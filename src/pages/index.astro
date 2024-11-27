@@ -1,16 +1,124 @@
 ---
-import '@/styles/globals.css'
-import Layout from '../layouts/Layout.astro';
-import { ModeToggle } from '@/components/ModeToggle';
+import "@/styles/globals.css";
+import Layout from "../layouts/Layout.astro";
+import { ThemeToggle } from "@/components/ModeToggle";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import { FAQ } from "@/components/faq";
 ---
 
 <Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<ModeToggle client:load />
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-	</main>
+  <nav class="flex justify-between px-8 py-4 bg-muted sticky top-0 z-10">
+    <div class="flex gap-4 items-center">
+      <Skeleton className="w-[45px] h-[45px] rounded-full bg-primary" />
+      <h1 class="text-xl font-semibold">Company Name</h1>
+    </div>
+
+    <div class="flex gap-8 items-center">
+      <a href="#about">About Us</a>
+      <a href="#process">How it works</a>
+      <a href="#faq">FAQ</a>
+
+      <ThemeToggle client:load />
+      <Button>Call to Action</Button>
+    </div>
+  </nav>
+  <main>
+    <section
+      id="hero"
+      class="flex gap-12 py-12 items-center mx-auto w-full place-content-center"
+    >
+      <div class="flex flex-col gap-4 max-w-screen-sm">
+        <h1 class="text-6xl">The Big Result you get your clients</h1>
+        <p class="text-lg">Short description of how you get to result</p>
+        <span>
+          <Button className="text-lg p-6">Call to Action</Button>
+        </span>
+      </div>
+      <Skeleton className="h-[512px] w-[512px] rounded-lg" />
+    </section>
+    <section class="bg-muted flex flex-col gap-6 items-center py-28">
+      <h1 class="text-5xl font-semibold">Point out the problem</h1>
+      <p>Some subheading expanding on the problem</p>
+      <ul class="list-disc">
+        <li>Issue 1</li>
+        <li>Issue 2</li>
+        <li>Issue 3</li>
+        <li>Issue 4</li>
+      </ul>
+    </section>
+    <section
+      id="about"
+      class="flex gap-12 py-12 items-center w-full place-content-center"
+    >
+      <div class="flex flex-col gap-4 max-w-screen-sm">
+        <h1 class="text-3xl">Introduce yourself and your business</h1>
+        <p>Describe why you are qualified for solving the client's problem.</p>
+      </div>
+      <Skeleton className="h-[368px] w-[368px] rounded-lg" />
+    </section>
+    <section class="bg-muted flex flex-col items-center w-full gap-8 py-12">
+      <h1 class="text-3xl">Why Work With Us</h1>
+      <div class="flex gap-16">
+        <Card className="w-64">
+          <CardContent className="flex flex-col gap-4 items-center p-8">
+            <Skeleton className="h-32 w-32" />
+            <CardTitle>Benefit 1</CardTitle>
+            <CardDescription>
+              A short description of the feature / benefit
+            </CardDescription>
+          </CardContent>
+        </Card>
+        <Card className="w-64">
+          <CardContent className="flex flex-col gap-4 items-center p-8">
+            <Skeleton className="h-32 w-32" />
+            <CardTitle>Benefit 2</CardTitle>
+            <CardDescription>
+              A short description of the feature / benefit
+            </CardDescription>
+          </CardContent>
+        </Card>
+        <Card className="w-64">
+          <CardContent className="flex flex-col gap-4 items-center p-8">
+            <Skeleton className="h-32 w-32" />
+            <CardTitle>Benefit 3</CardTitle>
+            <CardDescription>
+              A short description of the feature / benefit
+            </CardDescription>
+          </CardContent>
+        </Card>
+      </div>
+    </section>
+    <section id="process" class="flex flex-col gap-8 items-center py-12">
+      <h1>How it works:</h1>
+      <ol class="list-inside list-decimal">
+        <li>First step - what the client does to get started</li>
+        <li>Second step - a very brief summary of what you'll do</li>
+        <li>Third step - client get's the result</li>
+      </ol>
+    </section>
+    <!-- <section>Testimonials go here</section> -->
+    <section id="faq" class="flex flex-col gap-8 items-center py-12 bg-muted">
+      <h1>FAQ</h1>
+      <FAQ client:load/>
+    </section>
+	<section>
+		Call to action section
+	</section>
+  </main>
+  <footer class="bg-muted">
+	Footer
+  </footer>
 </Layout>
