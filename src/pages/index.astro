@@ -11,6 +11,14 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { FAQ } from "@/components/faq";
+import {
+  Timeline,
+  TimelineItem,
+  TimelineHeading,
+  TimelineDot,
+  TimelineLine,
+  TimelineContent,
+} from "@/components/ui/timeline";
 ---
 
 <Layout title="Welcome to Astro.">
@@ -32,7 +40,7 @@ import { FAQ } from "@/components/faq";
   <main>
     <section
       id="hero"
-      class="flex gap-12 py-12 items-center mx-auto w-full place-content-center"
+      class="flex gap-12 py-12 items-center place-content-center"
     >
       <div class="flex flex-col gap-4 max-w-screen-sm">
         <h1 class="text-6xl">The Big Result you get your clients</h1>
@@ -43,15 +51,20 @@ import { FAQ } from "@/components/faq";
       </div>
       <Skeleton className="h-[512px] w-[512px] rounded-lg" />
     </section>
-    <section class="bg-muted flex flex-col gap-6 items-center py-28">
-      <h1 class="text-5xl font-semibold">Point out the problem</h1>
-      <p>Some subheading expanding on the problem</p>
-      <ul class="list-disc">
-        <li>Issue 1</li>
-        <li>Issue 2</li>
-        <li>Issue 3</li>
-        <li>Issue 4</li>
-      </ul>
+    <section class="bg-muted flex flex-col gap-16 items-center py-12">
+      <h1 class="text-4xl font-semibold">Point out the problem</h1>
+      <div class="flex gap-24 items-start place-content-center">
+        <Skeleton className="h-[256px] w-[256px] bg-primary" />
+        <div class="flex flex-col gap-8">
+          <p>Some subheading expanding on the problem</p>
+          <ul class="list-disc list-inside">
+            <li>Issue 1</li>
+            <li>Issue 2</li>
+            <li>Issue 3</li>
+            <li>Issue 4</li>
+          </ul>
+        </div>
+      </div>
     </section>
     <section
       id="about"
@@ -95,24 +108,68 @@ import { FAQ } from "@/components/faq";
         </Card>
       </div>
     </section>
-    <section id="process" class="flex flex-col gap-8 items-center py-12">
-      <h1>How it works:</h1>
-      <ol class="list-inside list-decimal">
-        <li>First step - what the client does to get started</li>
-        <li>Second step - a very brief summary of what you'll do</li>
-        <li>Third step - client get's the result</li>
-      </ol>
+    <section
+      id="process"
+      class="flex flex-col gap-8 items-center py-12 max-w-xl m-auto"
+    >
+      <h1 class="text-3xl">How it works:</h1>
+
+      <Timeline positions="center">
+        <TimelineItem status="done">
+          <TimelineHeading side="left">1. First step</TimelineHeading>
+          <TimelineHeading side="right" variant="secondary">
+            <Skeleton className="h-48 w-48 m-8 -mt-4" />
+          </TimelineHeading>
+          <TimelineDot status="done" />
+          <TimelineLine done />
+          <TimelineContent side="left">
+            What the client does to get started and what they can expect to
+            receive immediately after
+          </TimelineContent>
+        </TimelineItem>
+
+        <TimelineItem status="done">
+          <TimelineHeading side="right">2. Second step</TimelineHeading>
+          <TimelineHeading side="left" variant="secondary">
+            <Skeleton className="h-48 w-48 m-8 -mt-4" />
+          </TimelineHeading>
+          <TimelineDot status="done" />
+          <TimelineLine done />
+          <TimelineContent>
+            A very brief summary of what you'll do
+          </TimelineContent>
+        </TimelineItem>
+
+        <TimelineItem status="done">
+          <TimelineHeading side="left">3. Third step</TimelineHeading>
+          <TimelineHeading side="right" variant="secondary">
+            <Skeleton className="h-48 w-48 m-8 -mt-4" />
+          </TimelineHeading>
+          <TimelineDot status="done" />
+          <TimelineLine />
+          <TimelineContent side="left">
+            Client get's the result
+          </TimelineContent>
+        </TimelineItem>
+      </Timeline>
     </section>
     <!-- <section>Testimonials go here</section> -->
     <section id="faq" class="flex flex-col gap-8 items-center py-12 bg-muted">
-      <h1>FAQ</h1>
-      <FAQ client:load/>
+      <h1 class="text-3xl">Frequently Asked Questions</h1>
+      <FAQ client:idle />
     </section>
-	<section>
-		Call to action section
-	</section>
+    <section class="flex flex-col gap-8 py-12 items-center">
+      <!-- Option 1 -->
+      <h1 class="text-3xl">Option 1: Schedule a call</h1>
+      <Skeleton className="h-[368px] w-[512px] p-12">
+        Embedded meeting scheduler tool like Cal.com or Calendly
+      </Skeleton>
+
+      <!-- Option 2 -->
+      <h1 class="text-3xl">Option 2: Form</h1>
+    </section>
   </main>
-  <footer class="bg-muted">
-	Footer
+  <footer class="bg-muted text-center py-8">
+    Copyright &copy 2025. All rights reserved by Company Name.
   </footer>
 </Layout>
